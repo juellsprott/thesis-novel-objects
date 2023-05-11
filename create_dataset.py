@@ -47,7 +47,7 @@ preds = ['an orange plastic bottle on a white background', 'a red sculpture on a
 
 folder_path = 'data/NOUN-2-600DPI'
 
-with open('dataset.csv', mode='w') as file:
+with open('dataset.csv', mode='w', newline='') as file:
     writer = csv.writer(file)
     writer.writerow(['image_path', 'number label', 'actual name', 'familiarity score', 'nameability score', 'color saliency', 'texture saliency'])
     for filename, label, true, fam, name, color in zip(os.listdir(folder_path), label, true_name, fam_scores, name_scores, color_scores):

@@ -1,8 +1,7 @@
+import csv
 from PIL import Image
 from transformers import AutoProcessor, Blip2ForConditionalGeneration
 import torch
-import os
-import csv
 from tqdm import tqdm
 
 
@@ -11,9 +10,10 @@ from tqdm import tqdm
 processor = AutoProcessor.from_pretrained("Salesforce/blip2-opt-2.7b")
 
 # load in float16 # load in int8
-model = Blip2ForConditionalGeneration.from_pretrained("Salesforce/blip2-opt-2.7b", load_in_8bit=True, device_map="auto")
+model = Blip2ForConditionalGeneration.from_pretrained("Salesforce/blip2-opt-2.7b",
+                                                      load_in_8bit=True, device_map="auto")
 
-device = "cuda" if torch.cuda.is_available() else "cpu"
+DEVICE = "cuda" if torch.cuda.is_available() else "cpu"
 
 
 # Read data from input file into memory
@@ -30,13 +30,14 @@ with open('dataset.csv', 'r') as csvinput:
         if len(row) > 0:
 
             raw_image = Image.open(row[0]).convert("RGB")
-            question = "which colors do you see in the image?"
+            QUESTION = "which colors do you see in the image?"
             #texture_question = "which textures do you see in the image?" # question for checking textures
 
-            inputs = processor(raw_image, return_tensors="pt").to(device, torch.float16)
+            inputs = processor(raw_image, return_tensors="pt").to(DEVICE, torch.float16)
 
             generated_ids = model.generate(**inputs, use_nucleus_sampling=True, max_new_tokens=20)
-            generated_text = processor.batch_decode(generated_ids, skip_special_tokens=True)[0].strip()
+            generated_text = processor.batch_decode(generated_ids,
+                                                     skip_special_tokens=True)[0].strip()
             print(generated_text)
             data.append(row + [generated_text])
 
