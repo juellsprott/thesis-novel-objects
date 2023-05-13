@@ -1,3 +1,4 @@
+import re
 def check_colors_and_textures(string):
     """
     Function for checking if any colors or textures are present in the given string.
@@ -50,7 +51,8 @@ def check_colors_and_textures(string):
     # Check if any of the colors are present in the string
     for color in colors:
         if color.lower() in string.lower():
-            colors_present.append(color)
+            if (color.lower() != "white") | ((color.lower() == "white") & ("background" not in string.lower())):
+                colors_present.append(color)
     # Check if any of the textures are present in the string
     for texture in textures:
         if texture.lower() in string.lower():

@@ -42,9 +42,6 @@ print(len(fam_scores))
 print(len(name_scores))
 print(len(color_scores))
 
-preds = ['an orange plastic bottle on a white background', 'a red sculpture on a white background', 'a set of colorful wooden blocks arranged in a row',
-         'an orange and yellow shaped object on a white background']
-
 folder_path = 'data/NOUN-2-600DPI'
 
 with open('dataset.csv', mode='w', newline='') as file:
