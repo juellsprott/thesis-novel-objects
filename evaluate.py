@@ -1,4 +1,3 @@
-import re
 def check_colors_and_textures(string):
     """
     Function for checking if any colors or textures are present in the given string.
