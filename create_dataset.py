@@ -19,9 +19,11 @@ color_scores = [66, 59, 19, 48, 81, 31, 78, 48, 65, 50, 88, 59, 87, 39, 55, 61,
                    55, 45, 47, 20, 37, 26, 61, 63, 23, 81, 65, 94, 3, 42, 50,
                      55, 39, 45, 47, 63, 45, 38, 53, 61, 35, 58, 28, 55, 59, 29, 13, 45]
 
-texture_scores = [14, 9, 0, 52, 13, 3, 6, 16, 45]
+texture_scores = [14, 9, 0, 52, 13, 3, 6, 16, 45, 25, 3, 41, 6, 0, 10, 6, 13, 6, 25, 6, 3,
+                  13, 17, 3, 13, 17, 9, 63, 16, 0, 26, 3, 3, 26, 13, 20, 3, 6, 13, 16, 20,
+                  3, 6, 6, 55, 3, 3, 6, 10, 0, 9, 7, 6, 48, 13, 13, 3, 3, 0, 29, 13, 42, 19, 3]
 
-label = [i for i in range(2000, 2065)]
+label = [i for i in range(2001, 2065)]
 
 true_name = ['bee have trap', 'bookend', 'fidget toy', 'pencil sharpener', 'fish tank stone', 'space ship top', 
              'air blower for slr cameras', 'curlers formed together', 'dog toy', 'dog toy pet shop', 'noisemaker',
@@ -36,18 +38,12 @@ true_name = ['bee have trap', 'bookend', 'fidget toy', 'pencil sharpener', 'fish
                'hand castanet', 'floating ball game', 'aroma therapy oil burner', 'dog toy', 'spout for watering can', 'hole for children golf game',
                  'maraca pen', 'dog toy with removed rope', 'dog toy', 'dog toy', 'magic loops', 'massager']
 
-print(len(label))
-print(len(true_name))
-print(len(fam_scores))
-print(len(name_scores))
-print(len(color_scores))
-
 folder_path = 'data/NOUN-2-600DPI'
 
-with open('dataset.csv', mode='w', newline='') as file:
+with open('dataset_nucleus.csv', mode='w', newline='') as file:
     writer = csv.writer(file)
     writer.writerow(['image_path', 'number label', 'actual name', 'familiarity score', 'nameability score', 'color saliency', 'texture saliency'])
-    for filename, label, true, fam, name, color in zip(os.listdir(folder_path), label, true_name, fam_scores, name_scores, color_scores):
+    for filename, label, true, fam, name, color, tex in zip(sorted(os.listdir(folder_path)), label, true_name, fam_scores, name_scores, color_scores, texture_scores):
         if filename.endswith('.jpg'):
             image_path = os.path.join(folder_path, filename)
-            writer.writerow([image_path, label, true, fam, name, color])
+            writer.writerow([image_path, label, true, fam, name, color, tex])

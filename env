@@ -1,0 +1,11 @@
+module load 2020 module load 2021
+module load JupyterHub/1.4.1-GCCcore-10.3.0
+module load cuDNN/8.2.1.32-CUDA-11.3.1
+module load IRkernel/1.2-foss-2021a
+module load jupyter-server-proxy/3.2.1-GCCcore-10.3.0
+module load jupyterlmod/2.0.2-GCCcore-10.3.0
+module load SciPy-bundle/2021.05-foss-2021a
+module load matplotlib/3.4.2-foss-2021a
+module load jupyter-resource-usage/0.6.0-GCCcore-10.3.0
+
+export my_env_var=1
