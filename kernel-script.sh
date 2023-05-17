@@ -4,7 +4,7 @@
 #SBATCH --gpus=1
 #SBATCH --cpus-per-task=18
 #SBATCH --partition=gpu
-#SBATCH --time=01:00:00
+#SBATCH --time=04:00:00
 
 # Make sure the jupyter command is available, either by loading the appropriate modules, sourcing your own virtual environment, etc.
 module load 2022

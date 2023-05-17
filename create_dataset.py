@@ -40,7 +40,7 @@ true_name = ['bee have trap', 'bookend', 'fidget toy', 'pencil sharpener', 'fish
 
 folder_path = 'data/NOUN-2-600DPI'
 
-with open('dataset_nucleus.csv', mode='w', newline='') as file:
+with open('data/datasets/dataset_full.csv', mode='w', newline='') as file:
     writer = csv.writer(file)
     writer.writerow(['image_path', 'number label', 'actual name', 'familiarity score', 'nameability score', 'color saliency', 'texture saliency'])
     for filename, label, true, fam, name, color, tex in zip(sorted(os.listdir(folder_path)), label, true_name, fam_scores, name_scores, color_scores, texture_scores):

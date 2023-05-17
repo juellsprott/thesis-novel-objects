@@ -1,17 +1,4 @@
-def check_colors_and_textures(string):
-    """
-    Function for checking if any colors or textures are present in the given string.
-
-    Args:
-        string (str): A string to check for the presence of colors or textures.
-
-    Returns:
-        A tuple containing two lists of strings:
-        - The first list contains the colors present in the string.
-        - The second list contains the textures present in the string.
-    """
-
-    colors = ["Red",    "Orange",    "Yellow",    "Green",    "Blue",    "Purple",
+colors = ["Red",    "Orange",    "Yellow",    "Green",    "Blue",    "Purple",
                   "Pink",    "Brown",    "Gray",    "Black",    "White",    "Beige",
                           "Turquoise",    "Teal",    "Magenta",    "Lavender",
                                   "Indigo",    "Maroon",    "Gold",    "Silver", 
@@ -24,7 +11,7 @@ def check_colors_and_textures(string):
                 "Vermilion",    "Violet",    "Wheat",    "Brick red",    "Caramel"]
 
 
-    textures = ["Smooth",    "Rough",    "Fuzzy",    "Soft", "Hard",
+textures = ["Smooth",    "Rough",    "Fuzzy",    "Soft", "Hard",
                   "Bumpy",    "Slick",    "Sticky",    "Grainy",
                       "Sandy",    "Slippery",    "Jagged",    "Sharp",
                         "Coarse",    "Silky",    "Velvety",    "Wet",
@@ -44,6 +31,21 @@ def check_colors_and_textures(string):
                         "Dull",    "Muddy",    "Cloudy",    "Milky",    "Transparent",
                                 "Translucent",    "Opaque"]
 
+def check_colors_and_textures(string, colors=colors, textures=textures):
+    """
+    Function for checking if any colors or textures are present in the given string.
+
+    Args:
+        string (str): A string to check for the presence of colors or textures.
+
+    Returns:
+        A tuple containing two lists of strings:
+        - The first list contains the colors present in the string.
+        - The second list contains the textures present in the string.
+    """
+
+
+
     # Initialize empty lists for colors and textures present in the string
     colors_present = []
     textures_present = []
@@ -59,3 +61,16 @@ def check_colors_and_textures(string):
     # Return boolean values indicating whether any colors or textures are present,
     # as well as the list of colors and textures present in the string
     return colors_present, textures_present
+
+def colors_to_boolean(string, colors=colors):
+    for color in colors:
+        if color.lower() in string.lower():
+            return True
+    return False
+
+def textures_to_boolean(string, textures=textures):
+    for texture in textures:
+        if texture.lower() in string.lower():
+            return True
+    return False
+
