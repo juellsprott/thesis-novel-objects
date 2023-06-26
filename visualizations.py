@@ -33,6 +33,7 @@ def visualize_saliency(data, c_or_t):
 
         for column in columns:
             if string_to_match in column and c_or_t in column and input in column:
+
                     
                     grouped_data = data.groupby([f'category bin {c_or_t}', column]).size().unstack().reset_index().fillna(0)
 
@@ -44,7 +45,7 @@ def visualize_saliency(data, c_or_t):
                     # print(column)
                     # print(grouped_data)
                     
-                    new_name = re.sub(r'\s+to boolean', f' {c_or_t} usage', re.sub(r'{}'.format(c_or_t), 'BLIP-2', column))
+                    new_name = re.sub(r'\s+to boolean', '', re.sub(r'{},+\s'.format(c_or_t), '', column))
                     bar_trace = go.Bar(
                             x=grouped_data[f'category bin {c_or_t}'],
                             y=grouped_data['percentage'],
@@ -56,11 +57,11 @@ def visualize_saliency(data, c_or_t):
         # Create the layout for the grouped bar chart
         fig.update_layout(
             width=1000,
-            title='Texture term usage rate in % per saliency bin',
+            title=f'{c_or_t} term usage rate per saliency bin for BLIP-2, {input}',
             xaxis=dict(title='Texture saliency in %', tickmode = 'array',
                     tickvals = [0, 1, 2, 3, 4],
                 ticktext = ['0-20', '21-40', '41-60', '61-80', '81-100']),
-            yaxis=dict(title='Rate of using texture terms'),
+            yaxis=dict(title=f'Rate of using {c_or_t} terms'),
             barmode='group')
         
         figs.append(fig)
