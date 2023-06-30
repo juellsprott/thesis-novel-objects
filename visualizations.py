@@ -32,7 +32,7 @@ def visualize_saliency(data, c_or_t):
         fig = go.Figure(layout_yaxis_range=[0,1])
 
         for column in columns:
-            if string_to_match in column and c_or_t in column and input in column:
+            if string_to_match in column and c_or_t in column and input in column and 'max_new_tokens' not in column:
 
                     
                     grouped_data = data.groupby([f'category bin {c_or_t}', column]).size().unstack().reset_index().fillna(0)
